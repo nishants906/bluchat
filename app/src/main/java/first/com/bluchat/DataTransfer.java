@@ -53,10 +53,7 @@ public class DataTransfer extends AppCompatActivity {
         list.setAdapter(adapter);
 
         db=new DBHandler(getApplicationContext());
-        db.resetTable_reciever();
-        db.resetTable_sender();
 
-        adapter.notifyDataSetChanged();
 
 
         bluetoothDevice = blutooth.mBluetoothDevice;
@@ -78,7 +75,7 @@ public class DataTransfer extends AppCompatActivity {
                                            String msg = inputMessage.getText().toString().toUpperCase();
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
-                                           db.addsendmessage(msg, String.valueOf(System.currentTimeMillis()));
+                                           db.addmessage(msg, String.valueOf(System.currentTimeMillis()), "send");
                                            adapter.notifyDataSetChanged();
                                            Log.d("query1",msg);
 /*                                           textview2.setText(msg);
@@ -126,7 +123,7 @@ public class DataTransfer extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if(readMessage!=null) {
-                                        db.addrecievemessage(readMessage, String.valueOf(System.currentTimeMillis()));
+                                        db.addmessage(readMessage, String.valueOf(System.currentTimeMillis()), "recieve");
                                         adapter.notifyDataSetChanged();
                                         Log.d("Query", readMessage);
 /*                                        textview1.setText(readMessage);

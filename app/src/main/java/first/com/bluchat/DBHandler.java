@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +15,14 @@ import java.util.List;
 public  class DBHandler extends SQLiteOpenHelper{
 
     private static final int DATABASE_VERSION = 2;
-    private static final String DATABASE_NAME = " vnb";
-    private static final String TABLE_RECIEVER = " recieve";
-    private static final String TABLE_SENDER = " send";
+    private static final String DATABASE_NAME = "bluchat";
+    private static final String TABLE_CHAT = "chat";
 
-    private static final String KEY_MESSAGE_RECIEVE = " send_message";
-    private static final String KEY_DATE_RECIEVE = " date";
-    private static final String KEY_TIME_RECIEVE = " time";
 
-    private static final String KEY_MESSAGE_SEND = " send_message";
-    private static final String KEY_DATE_SEND = " date";
-    private static final String KEY_TIME_SEND = " time";
+
+    private static final String KEY_MESSAGE = "message";
+    private static final String KEY_TIME = "time";
+    private static final String KEY_FLAG = "flag";
 
 
     public DBHandler(Context context) {
@@ -35,51 +31,37 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_RECIEVE_TABLE = "CREATE TABLE " + TABLE_RECIEVER + "("
-                + KEY_MESSAGE_RECIEVE + " TEXT, "
-                + KEY_TIME_RECIEVE + " TEXT " + ")";
-        db.execSQL(CREATE_RECIEVE_TABLE);
 
-        String CREATE_SEND_TABLE = " CREATE TABLE " + TABLE_SENDER + "("
-                + KEY_MESSAGE_SEND + " TEXT,"
-                + KEY_TIME_SEND + " TEXT " + " )";
-        db.execSQL(CREATE_SEND_TABLE);
-    }
+        String CREATE_CHAT_TABLE = "CREATE TABLE " + TABLE_CHAT + "("
+                + KEY_MESSAGE + " TEXT,"
+                + KEY_TIME + " TEXT UNIQUE,"
+                + KEY_FLAG + " TEXT " + ")";
+        db.execSQL(CREATE_CHAT_TABLE);
+
+        }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIEVER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SENDER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT);
         onCreate(db);
     }
-    public void addrecievemessage( String message,String time) {
+
+    public void addmessage(String message, String time, String flag) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_MESSAGE_RECIEVE, message);
+        values.put(KEY_MESSAGE, message);
+        values.put(KEY_TIME, time);
+        values.put(KEY_FLAG, flag);
 
-        values.put(KEY_TIME_RECIEVE, time);
-
-        db.insert(TABLE_RECIEVER, null, values);
-        Log.d("send",message);
-
+        db.insert(TABLE_CHAT, null, values);
         db.close();
     }
 
-    public void addsendmessage( String message,String time) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_MESSAGE_SEND, message);
-        values.put(KEY_TIME_SEND, time);
-        db.insert(TABLE_SENDER, null, values);
-        Log.d("send",message);
 
-        db.close();
-    }
-
-    public List<String> recieve_messages() {
+    public List<String> access_messages() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_RECIEVER;
+        String query = "SELECT * FROM " + TABLE_CHAT;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
         List<String> subjects = new ArrayList<String>();
@@ -91,31 +73,17 @@ public  class DBHandler extends SQLiteOpenHelper{
         return subjects;
     }
 
-    public List<String> send_messages() {
+    public List<String> access_flag() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_SENDER;
+        String query = "SELECT * FROM " + TABLE_CHAT;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
         List<String> subjects = new ArrayList<String>();
         if(cursor.getCount() > 0) {
             do {
-                subjects.add(cursor.getString(0));
+                subjects.add(cursor.getString(2));
             } while(cursor.moveToNext());
         }
         return subjects;
     }
-    public void resetTable_reciever() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.delete(TABLE_RECIEVER, null, null);
-        db.close();
-    }
-    public void resetTable_sender() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.delete(TABLE_SENDER, null, null);
-        db.close();
-    }
-
-
 }

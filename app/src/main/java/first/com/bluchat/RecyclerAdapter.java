@@ -20,18 +20,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public int type2=2;
     DBHandler db;
 
-    List<String> recieve;
-    List<String> send;
+    List<String> message;
+    List<String> flag;
 
 
 
     public RecyclerAdapter(Context context) {
         this.context = context;
         db = new DBHandler(context);
-        recieve = db.recieve_messages();
-        send = db.send_messages();
-        Log.d("position1", String.valueOf(recieve.size()));
-        Log.d("position1", String.valueOf(send.size()));
+        message = db.access_messages();
+        flag = db.access_flag();
+        Log.d("position1", String.valueOf(message.size()));
+        Log.d("position1", String.valueOf(flag.size()));
 
     }
 
@@ -57,38 +57,38 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         DBHandler db=new DBHandler(context);
 
         if (holder.holderid == 1) {
-            if(position<(recieve.size()*2)){
-            holder.text1.setText(recieve.get(position/2));
 
-                Log.d("position1", recieve.get(position/2));
+            holder.text1.setText(message.get(position));
+
+                Log.d("flag", flag.get(position));
             Log.d("recievecount", String.valueOf(position));
-            }
+
         }
         else if (holder.holderid == 2) {
 
-            if (position<(send.size()*2)) {
-                holder.text2.setText(send.get(position / 2));
+                holder.text2.setText(message.get(position));
                 Log.d("sendcount", String.valueOf(position));
-                Log.d("position1", send.get(position/2));
-            }
+                Log.d("position1", flag.get(position));
+
         }
     }
 
     @Override
     public int getItemCount() {
-        int total=Integer.valueOf(String.valueOf(recieve.size()))+Integer.valueOf(String.valueOf(send.size()));
+        int total=(message.size());
         Log.d("total", String.valueOf(total));
         return total;
     }
 
     @Override
     public int getItemViewType(int position){
-        if(position%2==0){
+        if(flag.get(position)=="recieve"){
             return type1;
         }
         else {
             return type2;
         }
+
 
     }
 
