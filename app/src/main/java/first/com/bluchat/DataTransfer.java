@@ -17,6 +17,7 @@ import android.widget.EditText;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Objects;
 
 public class DataTransfer extends AppCompatActivity {
@@ -32,19 +33,25 @@ public class DataTransfer extends AppCompatActivity {
     DBHandler db;
 
 
+    List<List<String>> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_transfer);
 
+        db=new DBHandler(getApplicationContext());
+
+        data=db.access_data();
+
+
         list= (RecyclerView) findViewById(R.id.recyclerview);
-        adapter=new RecyclerAdapter(getApplicationContext());
+        adapter=new RecyclerAdapter(getApplicationContext(),data);
         LinearLayoutManager lm=new LinearLayoutManager(this);
         list.setLayoutManager(lm);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(adapter);
 
-        db=new DBHandler(getApplicationContext());
 
 
         bluetoothDevice = blutooth.mBluetoothDevice;
@@ -126,9 +133,9 @@ public class DataTransfer extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 adapter.notifyDataSetChanged();
-
                                             }
                                         });
+
                                         Log.d("Query", readMessage);
 /*                                        textview1.setText(readMessage);
                                     ll1.addView(reciverlayout);*/

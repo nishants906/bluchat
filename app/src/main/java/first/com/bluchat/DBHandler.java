@@ -59,6 +59,26 @@ public  class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    public List<List<String>> access_data() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<List<String>> list1=new ArrayList<List<String>>();
+        String query = "SELECT * FROM " + TABLE_CHAT;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        List<String> subjects = new ArrayList<String>();
+        if(cursor.getCount() > 0) {
+            do {
+                List<String> row=new ArrayList<>();
+                row.add(cursor.getString(0));
+                row.add(cursor.getString(1));
+                row.add(cursor.getString(2));
+                list1.add(row);
+            } while(cursor.moveToNext());
+        }
+        return list1;
+    }
+
+
 
     public List<String> access_messages() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -92,6 +112,7 @@ public  class DBHandler extends SQLiteOpenHelper{
         Log.d("addsubject", String.valueOf(subjects));
         return subjects;
     }
+
     public int getRowCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CHAT;
         SQLiteDatabase db = this.getReadableDatabase();

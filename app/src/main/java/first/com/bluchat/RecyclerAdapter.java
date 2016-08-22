@@ -19,18 +19,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public int type2=2;
     DBHandler db;
 
+
     List<String> message;
     List<String> status;
+    List<List<String>>data1;
 
 
 
-    public RecyclerAdapter(Context context) {
+    public RecyclerAdapter(Context context, List<List<String>> data) {
         db = new DBHandler(context);
-        message = db.access_messages();
-        status = db.access_status();
-        Log.d("position1", String.valueOf(message.size()));
-        Log.d("position1", String.valueOf(status.size()));
 
+        data1=data;
+
+        for(int i=0;i<data.size();i++){
+            message.add(data.get(i).get(0));
+            Log.d("message123",message.get(i));
+        }
+
+        for(int i=0;i<data.size();i++){
+            status.add(data.get(i).get(0));
+        }
     }
 
     @Override
@@ -81,7 +89,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public int getItemViewType(int position){
         Log.d("status",status.get(position));
         if(status.get(position) == "send"){
-
             return type1;
         }
         else {
