@@ -15,23 +15,21 @@ import java.util.List;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
-    Context context;
     public int type1=1;
     public int type2=2;
     DBHandler db;
 
     List<String> message;
-    List<String> flag;
+    List<String> status;
 
 
 
     public RecyclerAdapter(Context context) {
-        this.context = context;
         db = new DBHandler(context);
         message = db.access_messages();
-        flag = db.access_flag();
+        status = db.access_status();
         Log.d("position1", String.valueOf(message.size()));
-        Log.d("position1", String.valueOf(flag.size()));
+        Log.d("position1", String.valueOf(status.size()));
 
     }
 
@@ -39,9 +37,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if(viewType==type1){
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.data_transfer_left,parent,false);
-        RecyclerViewHolder recyclerviewholder=new RecyclerViewHolder(view,viewType);
-        return recyclerviewholder;
+            View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.data_transfer_left,parent,false);
+            RecyclerViewHolder recyclerviewholder=new RecyclerViewHolder(view,viewType);
+            return recyclerviewholder;
         }
 
         else{
@@ -54,43 +52,44 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
-        DBHandler db=new DBHandler(context);
-
+        Log.d("holderid", String.valueOf(holder.holderid));
         if (holder.holderid == 1) {
 
             holder.text1.setText(message.get(position));
 
-                Log.d("flag", flag.get(position));
+            Log.d("flag", status.get(position));
             Log.d("recievecount", String.valueOf(position));
 
         }
         else if (holder.holderid == 2) {
 
-                holder.text2.setText(message.get(position));
-                Log.d("sendcount", String.valueOf(position));
-                Log.d("position1", flag.get(position));
+            holder.text2.setText(message.get(position));
+            Log.d("sendcount", String.valueOf(position));
+            Log.d("position1", status.get(position));
 
         }
     }
 
     @Override
     public int getItemCount() {
-        int total=(message.size());
-        Log.d("total", String.valueOf(total));
+        int total=db.getRowCount();
+        Log.d("totalsize1", String.valueOf(total));
         return total;
     }
 
     @Override
     public int getItemViewType(int position){
-        if(flag.get(position)=="recieve"){
+        Log.d("status",status.get(position));
+        if(status.get(position) == "send"){
+
             return type1;
         }
         else {
             return type2;
         }
 
-
     }
+
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
@@ -105,8 +104,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 holderid=1;
             }
             else{
-            text2= (TextView) itemView.findViewById(R.id.textr);
-            holderid=2;
+                text2= (TextView) itemView.findViewById(R.id.textr);
+                holderid=2;
             }
         }
     }

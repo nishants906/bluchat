@@ -13,8 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,22 +27,16 @@ public class DataTransfer extends AppCompatActivity {
     BluetoothDevice bluetoothDevice;
     Button bt1;
     EditText inputMessage;
-    View reciverlayout;
-    View senderlayoyt;
-    LinearLayout ll1;
-    TextView textview1;
-    TextView textview2;
     RecyclerView list;
     RecyclerView.Adapter adapter;
     DBHandler db;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_transfer);
 
-   /*     reciverlayout = getLayoutInflater().inflate(R.layout.data_transfer_left,null);
-        senderlayoyt = getLayoutInflater().inflate(R.layout.data_transfer_right,null);
-*/
         list= (RecyclerView) findViewById(R.id.recyclerview);
         adapter=new RecyclerAdapter(getApplicationContext());
         LinearLayoutManager lm=new LinearLayoutManager(this);
@@ -55,7 +47,6 @@ public class DataTransfer extends AppCompatActivity {
         db=new DBHandler(getApplicationContext());
 
 
-
         bluetoothDevice = blutooth.mBluetoothDevice;
         bluetoothSocket = blutooth.mBluetoothSocket;
         final ConnectedThread ct = new ConnectedThread(bluetoothSocket);
@@ -64,6 +55,7 @@ public class DataTransfer extends AppCompatActivity {
         inputMessage = (EditText) findViewById(R.id.editText);
       /*  ll1= (LinearLayout) findViewById(R.id.ll1);
         textview2= (TextView) senderlayoyt.findViewById(R.id.text1);*/
+
 
         bt1 = (Button) findViewById(R.id.send);
         bt1.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +68,15 @@ public class DataTransfer extends AppCompatActivity {
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
                                            db.addmessage(msg, String.valueOf(System.currentTimeMillis()), "send");
-                                           adapter.notifyDataSetChanged();
+
+                                           list.post(new Runnable() {
+                                               @Override
+                                               public void run() {
+                                                   adapter.notifyDataSetChanged();
+
+                                               }
+                                           });
                                            Log.d("query1",msg);
-/*                                           textview2.setText(msg);
-                                           ll1.addView(senderlayoyt);*/
                                            inputMessage.getText().clear();
 
                                        }
@@ -124,7 +121,14 @@ public class DataTransfer extends AppCompatActivity {
                                 public void run() {
                                     if(readMessage!=null) {
                                         db.addmessage(readMessage, String.valueOf(System.currentTimeMillis()), "recieve");
-                                        adapter.notifyDataSetChanged();
+
+                                        list.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                adapter.notifyDataSetChanged();
+
+                                            }
+                                        });
                                         Log.d("Query", readMessage);
 /*                                        textview1.setText(readMessage);
                                     ll1.addView(reciverlayout);*/
@@ -164,4 +168,5 @@ public class DataTransfer extends AppCompatActivity {
             }
         }
     }
+
 }
