@@ -43,6 +43,7 @@ public class DataTransfer extends AppCompatActivity {
         db=new DBHandler(getApplicationContext());
 
         data=db.access_data();
+        Log.d("access", String.valueOf(data));
 
 
         list= (RecyclerView) findViewById(R.id.recyclerview);

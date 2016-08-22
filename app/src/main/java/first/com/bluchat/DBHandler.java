@@ -65,15 +65,17 @@ public  class DBHandler extends SQLiteOpenHelper{
         String query = "SELECT * FROM " + TABLE_CHAT;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        List<String> subjects = new ArrayList<String>();
         if(cursor.getCount() > 0) {
             do {
                 List<String> row=new ArrayList<>();
                 row.add(cursor.getString(0));
                 row.add(cursor.getString(1));
                 row.add(cursor.getString(2));
+                Log.d("rowadd1", String.valueOf(row));
                 list1.add(row);
+                Log.d("rowadd2", String.valueOf(row));
             } while(cursor.moveToNext());
+
         }
         return list1;
     }

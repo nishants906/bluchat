@@ -25,20 +25,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     List<List<String>>data1;
 
 
-
     public RecyclerAdapter(Context context, List<List<String>> data) {
         db = new DBHandler(context);
 
         data1=data;
+        Log.d("aceess12", String.valueOf(data1));
 
         for(int i=0;i<data.size();i++){
             message.add(data.get(i).get(0));
-            Log.d("message123",message.get(i));
-        }
+             
+            Log.d("message123",message.get(1));
+            status.add(data.get(i).get(2));
 
-        for(int i=0;i<data.size();i++){
-            status.add(data.get(i).get(0));
-        }
+            }
     }
 
     @Override
