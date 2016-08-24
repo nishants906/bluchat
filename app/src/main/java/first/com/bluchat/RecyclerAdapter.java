@@ -1,14 +1,15 @@
 package first.com.bluchat;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.support.v7.widget.RecyclerView;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.TextView;
 
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
 
 
 /**
@@ -21,27 +22,56 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     DBHandler db;
 
 
-    List<String> message;
-    List<String> status;
-    List<List<String>>data1;
+    List<String> message=new ArrayList<>();
+    List<String> status=new ArrayList<>();
+    List<List<String>>data= new ArrayList<List<String>>();
 
     Context context;
 
-    public RecyclerAdapter(Context context, List<List<String>> data) {
+    public RecyclerAdapter(Context context) {
 
         this.context=context;
+        Log.d("contextc",String.valueOf(context));
         db = new DBHandler(context);
-        this.data1=data;
-        Log.d("aceess12", String.valueOf(data1));
+        data=db.access_data();
+        Log.d("aceess12", String.valueOf(data));
 
-        for(int i=0;i<(data.size());i++){
-            Log.d("sizeofdata", String.valueOf(data.size()));
-            message.add(data1.get(i).get(0));
+        for(int i=0; i<data.size() ;i++ ){
+
+            Log.d("messageoutput",String.valueOf(message.isEmpty()));
+
+            Log.d("messageoutput",String.valueOf(i));
+
+            List<String> mess=new ArrayList<>();
+            mess.add(String.valueOf(data.get(i).get(0)));
+
+            Log.d("messageoutput", String.valueOf(mess));
+
+            message.add(mess.get(i));
+
+
+            List<String> response=new ArrayList<>();
+            response.add(String.valueOf(data.get(i).get(2)));
+            status.add(response.get(i));
+
+            Log.d("messagesinput", String.valueOf(data.get(i).get(0)));
+            Log.d("messageoutput",String.valueOf(message));
+
+
+            Log.d("messagesinput", String.valueOf(data.get(i).get(2)));
+            Log.d("messageoutput",String.valueOf(status));
+        }
+
+
+   /*     for(int i=0;i<(data.size());i++){
+            Log.d("sizeofdata", String.valueOf(i));
+            Log.d("message1",data.get(i).get(0));
+            message.add(data.get(i).get(0));
             Log.d("messagedata", String.valueOf(message));
 
-            status.add(data1.get(i).get(2));
+            status.add(data.get(i).get(2));
             Log.d("statusdata", String.valueOf(status));
-            }
+        } */
     }
 
     @Override

@@ -61,7 +61,6 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     public List<List<String>> access_data() {
         SQLiteDatabase db = this.getReadableDatabase();
-
         List<List<String>> list1=new ArrayList<List<String>>();
         String query = "SELECT * FROM " + TABLE_CHAT;
         Cursor cursor = db.rawQuery(query, null);

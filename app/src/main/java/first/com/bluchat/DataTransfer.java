@@ -17,8 +17,6 @@ import android.widget.EditText;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class DataTransfer extends AppCompatActivity {
@@ -32,8 +30,7 @@ public class DataTransfer extends AppCompatActivity {
     RecyclerView list;
     RecyclerView.Adapter adapter;
     DBHandler db;
-
-    List<List<String>> data=new ArrayList<List<String>>();
+    private RecyclerView.LayoutManager lm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +39,11 @@ public class DataTransfer extends AppCompatActivity {
 
         db=new DBHandler(getApplicationContext());
 
-        data=db.access_data();
-        Log.d("access", String.valueOf(data));
+        Log.d("context12", String.valueOf(getApplicationContext()));
 
         list= (RecyclerView) findViewById(R.id.recyclerview);
-        adapter=new RecyclerAdapter(getApplicationContext(),db.access_data());
-        LinearLayoutManager lm=new LinearLayoutManager(this);
+        adapter=new RecyclerAdapter(getApplicationContext());
+        lm=new LinearLayoutManager(this);
         list.setLayoutManager(lm);
         list.setItemAnimator(new DefaultItemAnimator());
         list.setAdapter(adapter);
