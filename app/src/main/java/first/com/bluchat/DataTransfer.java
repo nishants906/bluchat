@@ -17,6 +17,7 @@ import android.widget.EditText;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class DataTransfer extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     DBHandler db;
 
-    List<List<String>> data;
+    List<List<String>> data=new ArrayList<List<String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
