@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+
 /**
- * Created by Test on 8/20/2016.
+ * Created by Test on 8/20/2016.v
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
@@ -24,19 +25,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     List<String> status;
     List<List<String>>data1;
 
+    Context context;
 
     public RecyclerAdapter(Context context, List<List<String>> data) {
-        db = new DBHandler(context);
 
-        data1=data;
+        this.context=context;
+        db = new DBHandler(context);
+        this.data1=data;
         Log.d("aceess12", String.valueOf(data1));
 
-        for(int i=0;i<data.size();i++){
-            message.add(data.get(i).get(0));
-             
-            Log.d("message123",message.get(1));
-            status.add(data.get(i).get(2));
+        for(int i=0;i<(data.size());i++){
+            Log.d("sizeofdata", String.valueOf(data.size()));
+            message.add(data1.get(i).get(0));
+            Log.d("messagedata", String.valueOf(message));
 
+            status.add(data1.get(i).get(2));
+            Log.d("statusdata", String.valueOf(status));
             }
     }
 

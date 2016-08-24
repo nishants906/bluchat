@@ -32,7 +32,6 @@ public class DataTransfer extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     DBHandler db;
 
-
     List<List<String>> data;
 
     @Override
@@ -45,9 +44,8 @@ public class DataTransfer extends AppCompatActivity {
         data=db.access_data();
         Log.d("access", String.valueOf(data));
 
-
         list= (RecyclerView) findViewById(R.id.recyclerview);
-        adapter=new RecyclerAdapter(getApplicationContext(),data);
+        adapter=new RecyclerAdapter(getApplicationContext(),db.access_data());
         LinearLayoutManager lm=new LinearLayoutManager(this);
         list.setLayoutManager(lm);
         list.setItemAnimator(new DefaultItemAnimator());

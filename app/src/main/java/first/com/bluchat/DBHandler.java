@@ -19,9 +19,9 @@ public  class DBHandler extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "vnb";
     private static final String TABLE_CHAT = "chat";
 
-    private static final String KEY_MESSAGE = "message";
-    private static final String KEY_TIME = "time";
-    private static final String KEY_STATUS = "status";
+    private static String KEY_MESSAGE = "message";
+    private static String KEY_TIME = "time";
+    private static String KEY_STATUS = "status";
 
     public DBHandler(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -61,6 +61,7 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     public List<List<String>> access_data() {
         SQLiteDatabase db = this.getReadableDatabase();
+
         List<List<String>> list1=new ArrayList<List<String>>();
         String query = "SELECT * FROM " + TABLE_CHAT;
         Cursor cursor = db.rawQuery(query, null);
@@ -77,11 +78,13 @@ public  class DBHandler extends SQLiteOpenHelper{
             } while(cursor.moveToNext());
 
         }
+        cursor.close();
+        db.close();
         return list1;
     }
 
 
-
+/*
     public List<String> access_messages() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_CHAT;
@@ -113,7 +116,7 @@ public  class DBHandler extends SQLiteOpenHelper{
 
         Log.d("addsubject", String.valueOf(subjects));
         return subjects;
-    }
+    }*/
 
     public int getRowCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CHAT;
