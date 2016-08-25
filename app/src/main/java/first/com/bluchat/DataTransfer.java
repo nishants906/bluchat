@@ -38,6 +38,7 @@ public class DataTransfer extends AppCompatActivity {
         setContentView(R.layout.activity_data_transfer);
 
         db=new DBHandler(getApplicationContext());
+        db.resetTable_Records();
 
         Log.d("context12", String.valueOf(getApplicationContext()));
 
@@ -70,7 +71,7 @@ public class DataTransfer extends AppCompatActivity {
                                            String msg = inputMessage.getText().toString().toUpperCase();
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
-                                           db.addmessage(msg, String.valueOf(System.currentTimeMillis()), "send");
+                                           db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send");
 
                                            list.post(new Runnable() {
                                                @Override
@@ -123,14 +124,8 @@ public class DataTransfer extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if(readMessage!=null) {
-                                        db.addmessage(readMessage, String.valueOf(System.currentTimeMillis()), "recieve");
-
-                                        list.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                adapter.notifyDataSetChanged();
-                                            }
-                                        });
+                                        db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve");
+                                        adapter.notifyDataSetChanged();
 
                                         Log.d("Query", readMessage);
 /*                                        textview1.setText(readMessage);

@@ -43,6 +43,7 @@ public  class DBHandler extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_CHAT);
         onCreate(db);
+
     }
 
     public void addmessage(String message, String time, String status) {
@@ -56,7 +57,6 @@ public  class DBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_CHAT, null, values);
         Log.d("query",TABLE_CHAT);
 
-        db.close();
     }
 
     public List<List<String>> access_data() {
@@ -66,7 +66,9 @@ public  class DBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
         if(cursor.getCount() > 0) {
+
             do {
+
                 List<String> row=new ArrayList<>();
                 row.add(cursor.getString(0));
                 row.add(cursor.getString(1));
@@ -74,58 +76,31 @@ public  class DBHandler extends SQLiteOpenHelper{
                 Log.d("rowadd1", String.valueOf(row));
                 list1.add(row);
                 Log.d("rowadd2", String.valueOf(row));
+
             } while(cursor.moveToNext());
 
         }
         cursor.close();
-        db.close();
         return list1;
+
     }
 
-
-/*
-    public List<String> access_messages() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_CHAT;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        List<String> subjects = new ArrayList<String>();
-        if(cursor.getCount() > 0) {
-            do {
-                subjects.add(cursor.getString(0));
-            } while(cursor.moveToNext());
-        }
-
-        Log.d("addsubject", String.valueOf(subjects));
-
-        return subjects;
-    }
-
-    public List<String> access_status() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_CHAT;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        List<String> subjects = new ArrayList<String>();
-        if(cursor.getCount() > 0) {
-            do {
-                subjects.add(cursor.getString(2));
-            } while(cursor.moveToNext());
-        }
-
-        Log.d("addsubject", String.valueOf(subjects));
-        return subjects;
-    }*/
 
     public int getRowCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CHAT;
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery(countQuery, null);
         int rowCount = cursor.getCount();
         cursor.close();
-        db.close();
 
         return rowCount;
     }
+
+
+    public void resetTable_Records() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_CHAT, null, null);
+     }
+
 }
