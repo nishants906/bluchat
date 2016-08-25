@@ -22,7 +22,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     DBHandler db;
 
 
-    List<String> message=new ArrayList<>();
+    List<String> messages=new ArrayList<>();
     List<String> status=new ArrayList<>();
     List<List<String>>data= new ArrayList<List<String>>();
 
@@ -35,44 +35,32 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         db = new DBHandler(context);
         data=db.access_data();
         Log.d("aceess12", String.valueOf(data));
+        List<String> mess=new ArrayList<>();
+        List<String> response=new ArrayList<>();
 
         for(int i=0; i<data.size() ;i++ ){
 
-            Log.d("messageoutput",String.valueOf(message.isEmpty()));
-
+            Log.d("messageoutput",String.valueOf(messages.isEmpty()));
             Log.d("messageoutput",String.valueOf(i));
 
-            List<String> mess=new ArrayList<>();
             mess.add(String.valueOf(data.get(i).get(0)));
 
             Log.d("messageoutput", String.valueOf(mess));
 
-            message.add(mess.get(i));
-
-
-            List<String> response=new ArrayList<>();
             response.add(String.valueOf(data.get(i).get(2)));
-            status.add(response.get(i));
 
             Log.d("messagesinput", String.valueOf(data.get(i).get(0)));
-            Log.d("messageoutput",String.valueOf(message));
-
-
-            Log.d("messagesinput", String.valueOf(data.get(i).get(2)));
-            Log.d("messageoutput",String.valueOf(status));
+        
+          Log.d("messagesinput", String.valueOf(data.get(i).get(2)));
         }
 
+        messages=mess;
+        Log.d("messageoutput",String.valueOf(messages));
 
-   /*     for(int i=0;i<(data.size());i++){
-            Log.d("sizeofdata", String.valueOf(i));
-            Log.d("message1",data.get(i).get(0));
-            message.add(data.get(i).get(0));
-            Log.d("messagedata", String.valueOf(message));
-
-            status.add(data.get(i).get(2));
-            Log.d("statusdata", String.valueOf(status));
-        } */
+        status=response;
+        Log.d("messageoutput",String.valueOf(status));
     }
+
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -96,7 +84,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         Log.d("holderid", String.valueOf(holder.holderid));
         if (holder.holderid == 1) {
 
-            holder.text1.setText(message.get(position));
+            holder.text1.setText(messages.get(position));
 
             Log.d("flag", status.get(position));
             Log.d("recievecount", String.valueOf(position));
@@ -104,7 +92,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         }
         else if (holder.holderid == 2) {
 
-            holder.text2.setText(message.get(position));
+            holder.text2.setText(messages.get(position));
             Log.d("sendcount", String.valueOf(position));
             Log.d("position1", status.get(position));
 
@@ -113,7 +101,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public int getItemCount() {
-        int total=db.getRowCount();
+        int total=data.size();
         Log.d("totalsize1", String.valueOf(total));
         return total;
     }
@@ -121,12 +109,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public int getItemViewType(int position){
         Log.d("status",status.get(position));
-        if(status.get(position) == "send"){
-            return type1;
+        if(status.get(position) == "recieve"){
+            return 1;
         }
-        else {
-            return type2;
+        else if(status.get(position) == "send"){
+            return 2;
         }
+        else
+            return 2;
 
     }
 
@@ -139,7 +129,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         public RecyclerViewHolder(View itemView,int viewtype) {
             super(itemView);
-            if(viewtype==type1) {
+            if(viewtype==1) {
                 text1 = (TextView) itemView.findViewById(R.id.textl);
                 holderid=1;
             }
