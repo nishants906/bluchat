@@ -1,15 +1,15 @@
 package first.com.bluchat;
 
-        import android.content.Context;
-        import android.support.v7.widget.RecyclerView;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +31,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         Log.d("contextc", String.valueOf(context));
         db = new DBHandler(context);
         Log.d("aceess12", String.valueOf(db.access_data()));
+
+
 /*        List<String> mess = new ArrayList<>();
         List<String> response = new ArrayList<>();
 

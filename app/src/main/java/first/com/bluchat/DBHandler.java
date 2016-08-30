@@ -86,16 +86,6 @@ public  class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public int getRowCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_CHAT;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int rowCount = cursor.getCount();
-        cursor.close();
-
-        return rowCount;
-    }
-
 
     public void resetTable_Records() {
         SQLiteDatabase db = this.getWritableDatabase();

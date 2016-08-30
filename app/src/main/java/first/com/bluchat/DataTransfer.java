@@ -41,14 +41,24 @@ public class DataTransfer extends AppCompatActivity {
         db.resetTable_Records();
 
         Log.d("context12", String.valueOf(getApplicationContext()));
+        if(String.valueOf(db.access_data().size()).equals("0")) {
+            list = (RecyclerView) findViewById(R.id.recyclerview);
+            adapter = new RecyclerAdapter(getApplicationContext());
+            lm = new LinearLayoutManager(this);
+            list.setLayoutManager(lm);
+            list.setItemAnimator(new DefaultItemAnimator());
+            list.setAdapter(adapter);
+        }
+        else{
+            list = (RecyclerView) findViewById(R.id.recyclerview);
+            adapter = new RecyclerAdapter(getApplicationContext());
+            lm = new LinearLayoutManager(this);
+            list.setLayoutManager(lm);
+            lm.scrollToPosition(db.access_data().size()-1);
+            list.setItemAnimator(new DefaultItemAnimator());
+            list.setAdapter(adapter);
 
-        list= (RecyclerView) findViewById(R.id.recyclerview);
-        adapter=new RecyclerAdapter(getApplicationContext());
-        lm=new LinearLayoutManager(this);
-        list.setLayoutManager(lm);
-        list.setItemAnimator(new DefaultItemAnimator());
-        list.setAdapter(adapter);
-
+        }
 
 
         bluetoothDevice = blutooth.mBluetoothDevice;
@@ -68,7 +78,7 @@ public class DataTransfer extends AppCompatActivity {
                                    public void onClick(View v) {
                                        if (!Objects.equals(inputMessage.getText().toString(), "")){
                                            Log.d(TAG, "Clicked");
-                                           String msg = inputMessage.getText().toString().toUpperCase();
+                                           String msg = inputMessage.getText().toString();
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
                                            db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send");

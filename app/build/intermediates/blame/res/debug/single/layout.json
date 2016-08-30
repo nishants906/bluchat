@@ -8,16 +8,16 @@
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_part_chronometer.xml"
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
-        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\nnc.xml",
@@ -164,11 +164,11 @@
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
-        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_search_view.xml"
-    },
-    {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\data_transfer_right.xml",
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\src\\main\\res\\layout\\data_transfer_right.xml"
+    },
+    {
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_search_view.xml"
     }
 ]
