@@ -40,25 +40,15 @@ public class DataTransfer extends AppCompatActivity {
         db=new DBHandler(getApplicationContext());
         db.resetTable_Records();
 
-        Log.d("context12", String.valueOf(getApplicationContext()));
-        if(String.valueOf(db.access_data().size()).equals("0")) {
             list = (RecyclerView) findViewById(R.id.recyclerview);
             adapter = new RecyclerAdapter(getApplicationContext());
             lm = new LinearLayoutManager(this);
             list.setLayoutManager(lm);
-            list.setItemAnimator(new DefaultItemAnimator());
-            list.setAdapter(adapter);
-        }
-        else{
-            list = (RecyclerView) findViewById(R.id.recyclerview);
-            adapter = new RecyclerAdapter(getApplicationContext());
-            lm = new LinearLayoutManager(this);
-            list.setLayoutManager(lm);
-            lm.scrollToPosition(db.access_data().size()-1);
+
             list.setItemAnimator(new DefaultItemAnimator());
             list.setAdapter(adapter);
 
-        }
+
 
 
         bluetoothDevice = blutooth.mBluetoothDevice;
@@ -83,6 +73,8 @@ public class DataTransfer extends AppCompatActivity {
                                            ct.write(bytes);
                                            db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send");
 
+                                           Log.d("context12", String.valueOf(adapter.getItemCount()));
+                                           list.getLayoutManager().smoothScrollToPosition(list, null, adapter.getItemCount());
                                            list.post(new Runnable() {
                                                @Override
                                                public void run() {
@@ -135,6 +127,10 @@ public class DataTransfer extends AppCompatActivity {
                                 public void run() {
                                     if(readMessage!=null) {
                                         db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve");
+
+                                        Log.d("context12", String.valueOf(adapter.getItemCount()));
+                                        list.getLayoutManager().smoothScrollToPosition(list, null, adapter.getItemCount());
+
                                         adapter.notifyDataSetChanged();
 
                                         Log.d("Query", readMessage);
