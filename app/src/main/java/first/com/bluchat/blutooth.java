@@ -4,25 +4,31 @@ package first.com.bluchat;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import java.io.IOException;
 import java.util.UUID;
 
 
 public class blutooth extends AppCompatActivity {
+
+    TextView name;
+    DBHandler db;
 
     private BluetoothAdapter bluetoothAdapter;
     private ToggleButton toggleButton;
@@ -63,8 +69,15 @@ public class blutooth extends AppCompatActivity {
 
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         listview = (ListView) findViewById(R.id.listView);
+        name= (TextView) findViewById(R.id.name);
+        db=new DBHandler(getApplicationContext());
+        String detail[]=db.getLoginDetails();
+        Log.d("details", String.valueOf(db.getLoginDetails()));
+        name.setText(detail[0]);
+
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // ListView Clicked item value

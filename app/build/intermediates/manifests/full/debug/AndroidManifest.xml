@@ -26,6 +26,7 @@
         </activity>
         <activity android:name="first.com.bluchat.blutooth" />
         <activity android:name="first.com.bluchat.DataTransfer" />
+        <activity android:name="first.com.bluchat.LoginActivity" />
     </application>
 
 </manifest>

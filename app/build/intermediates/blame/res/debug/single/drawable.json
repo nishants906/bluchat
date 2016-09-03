@@ -64,6 +64,14 @@
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\login_back.PNG",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\src\\main\\res\\drawable\\login_back.PNG"
+    },
+    {
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\chatbubblesend.png",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\src\\main\\res\\drawable\\chatbubblesend.png"
+    },
+    {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
@@ -108,6 +116,10 @@
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_seekbar_thumb_material.xml"
     },
     {
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\album.gif",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\src\\main\\res\\drawable\\album.gif"
+    },
+    {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
@@ -126,6 +138,10 @@
     {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
         "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\profile.PNG",
+        "source": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\src\\main\\res\\drawable\\profile.PNG"
     },
     {
         "merged": "C:\\Users\\Test\\AndroidStudioProjects\\BluChat\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",

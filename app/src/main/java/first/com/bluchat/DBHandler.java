@@ -19,9 +19,15 @@ public  class DBHandler extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "vnb";
     private static final String TABLE_CHAT = "chat";
 
+    private static final String TABLE_LOGIN = "logIn";
+
+
     private static String KEY_MESSAGE = "message";
     private static String KEY_TIME = "time";
     private static String KEY_STATUS = "status";
+
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_PASS = "password";
 
     public DBHandler(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -30,21 +36,33 @@ public  class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_CHAT + "("
+        String CREATE_CHAT_TABLE = "CREATE TABLE " + TABLE_CHAT + "("
                 + KEY_MESSAGE + " TEXT,"
                 + KEY_TIME + " TEXT UNIQUE,"
                 + KEY_STATUS + " TEXT " + ")";
 
+        db.execSQL(CREATE_CHAT_TABLE);
+
+        Log.d("createtable",CREATE_CHAT_TABLE);
+
+        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
+                + KEY_USERNAME + " TEXT, "
+                + KEY_PASS + " TEXT " + ")";
+
         db.execSQL(CREATE_LOGIN_TABLE);
+
         Log.d("createtable",CREATE_LOGIN_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_CHAT);
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_LOGIN);
         onCreate(db);
 
     }
+
 
     public void addmessage(String message, String time, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -56,6 +74,19 @@ public  class DBHandler extends SQLiteOpenHelper{
 
         db.insert(TABLE_CHAT, null, values);
         Log.d("query",TABLE_CHAT);
+
+    }
+
+
+    public void adddetails(String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USERNAME, username);
+
+        Log.d("values", String.valueOf(values));
+        db.insert(TABLE_LOGIN, null, values);
+        Log.d("query",TABLE_LOGIN);
 
     }
 
@@ -82,15 +113,44 @@ public  class DBHandler extends SQLiteOpenHelper{
         }
         cursor.close();
         return list1;
-
     }
 
 
+    public String[] getLoginDetails() {
+        String data [] ;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_LOGIN;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        int count = cursor.getCount();
+        data = new String[count];
+        Log.d("counting", String.valueOf(count));
+
+        while(count > 0) {
+            data[0] = cursor.getString(0);
+            Log.d("datastring",cursor.getString(0));
+            cursor.moveToNext();
+            count--;
+        }
+        cursor.close();
+        db.close();
+        Log.d("datastring", String.valueOf(data));
+
+        return data;
+
+    }
 
     public void resetTable_Records() {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABLE_CHAT, null, null);
      }
+
+    public void resetLogin_Records() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_LOGIN, null, null);
+    }
+
 
 }

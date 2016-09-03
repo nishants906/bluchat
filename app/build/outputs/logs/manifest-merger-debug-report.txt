@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:2:1-25:12
+ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:2:1-26:12
 	package
 		ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:3:5-32
 		INJECTED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml
@@ -22,7 +22,7 @@ ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManif
 	android:name
 		ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:6:22-71
 application
-ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:8:5-23:19
+ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:8:5-24:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
@@ -32,6 +32,7 @@ MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Test\A
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:cardview-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.1.0\AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:11:9-41
 	android:supportsRtl
@@ -64,6 +65,10 @@ activity#first.com.bluchat.DataTransfer
 ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:22:9-50
 	android:name
 		ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:22:19-47
+activity#first.com.bluchat.LoginActivity
+ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:23:9-60
+	android:name
+		ADDED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml:23:19-48
 uses-sdk
 INJECTED from C:\Users\Test\AndroidStudioProjects\BluChat\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:21:5-23:78
@@ -76,6 +81,7 @@ MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Test\AndroidStudioP
 MERGED from [com.android.support:cardview-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.4.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.1.0\AndroidManifest.xml:5:5-7:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Test\AndroidStudioProjects\BluChat\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
