@@ -12,10 +12,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +29,12 @@ public class blutooth extends AppCompatActivity {
 
     TextView name;
     DBHandler db;
+    ImageView info;
 
     private BluetoothAdapter bluetoothAdapter;
     private ToggleButton toggleButton;
-    private ListView listview;
-    private ArrayAdapter adapter;
+    private ListView listview,listView1;
+    private ArrayAdapter adapter,adapter1;
     private static final int ENABLE_BT_REQUEST_CODE = 1; // anything greater than 0 can do
     private static final int DISCOVERABLE_BT_REQUEST_CODE = 2;
     private static final int DISCOVERABLE_DURATION = 300;
@@ -69,11 +70,21 @@ public class blutooth extends AppCompatActivity {
 
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         listview = (ListView) findViewById(R.id.listView);
+        listView1= (ListView) findViewById(R.id.listView1);
         name= (TextView) findViewById(R.id.name);
         db=new DBHandler(getApplicationContext());
-        String detail[]=db.getLoginDetails();
-        Log.d("details", String.valueOf(db.getLoginDetails()));
-        name.setText(detail[0]);
+        String[] name1=db.getLoginDetails();
+        String[] id=db.getLoginid();
+        name.setText(name1[0]);
+
+        info= (ImageView) findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(blutooth.this,about_developer.class);
+                startActivity(intent);
+            }
+        });
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -95,6 +106,11 @@ public class blutooth extends AppCompatActivity {
 
         adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1);
         listview.setAdapter(adapter);
+
+        adapter1 = new ArrayAdapter(this,android.R.layout.simple_list_item_1);
+        listView1.setAdapter(adapter1);
+        adapter1.
+
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }

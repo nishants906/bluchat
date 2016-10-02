@@ -38,18 +38,14 @@ public class DataTransfer extends AppCompatActivity {
         setContentView(R.layout.activity_data_transfer);
 
         db=new DBHandler(getApplicationContext());
-        db.resetTable_Records();
 
-            list = (RecyclerView) findViewById(R.id.recyclerview);
-            adapter = new RecyclerAdapter(getApplicationContext());
-            lm = new LinearLayoutManager(this);
-            list.setLayoutManager(lm);
+        list = (RecyclerView) findViewById(R.id.recyclerview);
+        adapter = new RecyclerAdapter(getApplicationContext());
+        lm = new LinearLayoutManager(this);
+        list.setLayoutManager(lm);
 
-            list.setItemAnimator(new DefaultItemAnimator());
-            list.setAdapter(adapter);
-
-
-
+        list.setItemAnimator(new DefaultItemAnimator());
+        list.setAdapter(adapter);
 
         bluetoothDevice = blutooth.mBluetoothDevice;
         bluetoothSocket = blutooth.mBluetoothSocket;
@@ -71,7 +67,8 @@ public class DataTransfer extends AppCompatActivity {
                                            String msg = inputMessage.getText().toString();
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
-                                           db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send");
+                                           Log.d("message1", msg);
+                                           db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send",bluetoothDevice.getAddress());
 
                                            Log.d("context12", String.valueOf(adapter.getItemCount()));
                                            list.getLayoutManager().smoothScrollToPosition(list, null, adapter.getItemCount());
@@ -126,7 +123,8 @@ public class DataTransfer extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if(readMessage!=null) {
-                                        db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve");
+                                        db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve",bluetoothDevice.getAddress());
+                                        Log.d("message12", readMessage);
 
                                         Log.d("context12", String.valueOf(adapter.getItemCount()));
                                         list.getLayoutManager().smoothScrollToPosition(list, null, adapter.getItemCount());

@@ -11,7 +11,11 @@
     android:background="@drawable/login_back"
     android:layout_gravity="center"
     android:orientation="vertical">
-
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/info"
+        android:id="@+id/info"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         app:civ_border_color="@color/cardview_light_background"
@@ -47,8 +51,16 @@
 <ListView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_weight="1"
     android:id="@+id/listView"
-    android:layout_centerHorizontal="true"
     android:layout_below="@+id/toggleButton" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView1"
+        android:layout_weight="1"
+        android:layout_below="@+id/listView" />
+
 
 </LinearLayout>

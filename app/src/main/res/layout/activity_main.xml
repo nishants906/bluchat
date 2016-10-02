@@ -3,30 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:background="#fff">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main"/>
+        android:background="@drawable/intro1"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="BLUCHAT"
         android:textStyle="bold"
         android:textColor="#000"
         android:textSize="40dp"
-        android:layout_marginTop="485dp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginTop="405dp"
+        android:gravity="center"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="YOUR PERSONAL CHAT BOX"
         android:textStyle="bold"
         android:textColor="#000"
         android:textSize="20dp"
-        android:layout_marginTop="540dp"
-        android:layout_marginLeft="50dp"/>
-
+        android:gravity="center_horizontal"
+        android:layout_marginTop="460dp"
+      />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package first.com.bluchat;
-
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Created by Test on 8/20/2016.v
@@ -18,48 +16,22 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
     DBHandler db;
+    BluetoothSocket bluetoothSocket;
+    BluetoothDevice bluetoothDevice;
 
-
-    List<String> messages = new ArrayList<>();
-    List<String> status = new ArrayList<>();
 
     Context context;
 
     public RecyclerAdapter(Context context) {
 
         this.context = context;
+
+        bluetoothDevice = blutooth.mBluetoothDevice;
+        bluetoothSocket = blutooth.mBluetoothSocket;
         Log.d("contextc", String.valueOf(context));
         db = new DBHandler(context);
         Log.d("aceess12", String.valueOf(db.access_data()));
 
-
-/*        List<String> mess = new ArrayList<>();
-        List<String> response = new ArrayList<>();
-
-
-
-        for (int i = 0; i < db.access_data().size(); i++) {
-
-            Log.d("messageoutput", String.valueOf(messages.isEmpty()));
-            Log.d("messageoutput", String.valueOf(i));
-
-            mess.add(String.valueOf(db.access_data().get(i).get(0)));
-
-            Log.d("messageoutput", String.valueOf(mess));
-
-            response.add(String.valueOf(db.access_data().get(i).get(2)));
-
-            Log.d("messagesinput", String.valueOf(db.access_data().get(i).get(0)));
-
-            Log.d("messagesinput", String.valueOf(db.access_data().get(i).get(2)));
-        }
-
-        messages = mess;
-        Log.d("messageoutput", String.valueOf(messages));
-
-        status = response;
-        Log.d("messageoutput", String.valueOf(status));
-    }*/
     }
 
 
@@ -67,7 +39,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Log.d("viewtypevalue", String.valueOf(viewType));
-
         if (String.valueOf(viewType).equals("1")) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_transfer_left, parent, false);
             RecyclerViewHolder recyclerviewholder = new RecyclerViewHolder(view, viewType);
@@ -89,20 +60,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
         Log.d("holderid", String.valueOf(holder.holderid));
-        if (String.valueOf(holder.holderid).equals("1")) {
+            if (String.valueOf(holder.holderid).equals("1")) {
 
-            holder.text1.setText(db.access_data().get(position).get(0));
+                holder.text1.setText(db.access_data().get(position).get(0));
 
 
-            Log.d("recievecount", String.valueOf(position));
+                Log.d("recievecount", String.valueOf(position));
 
-        } else if (String.valueOf(holder.holderid).equals("2")) {
+            } else if (String.valueOf(holder.holderid).equals("2")) {
 
-            holder.text2.setText(db.access_data().get(position).get(0));
-            Log.d("sendcount", String.valueOf(position));
+                holder.text2.setText(db.access_data().get(position).get(0));
+                Log.d("sendcount", String.valueOf(position));
 
+            }
         }
-    }
+
 
     @Override
     public int getItemCount() {
