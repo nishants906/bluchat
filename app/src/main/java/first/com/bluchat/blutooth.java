@@ -4,42 +4,36 @@ package first.com.bluchat;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import java.io.IOException;
 import java.util.UUID;
 
 
 public class blutooth extends AppCompatActivity {
 
-    TextView name;
-    DBHandler db;
-    ImageView info;
-
     private BluetoothAdapter bluetoothAdapter;
     private ToggleButton toggleButton;
-    private ListView listview,listView1;
+    private ListView listview,listview1;
     private ArrayAdapter adapter,adapter1;
     private static final int ENABLE_BT_REQUEST_CODE = 1; // anything greater than 0 can do
     private static final int DISCOVERABLE_BT_REQUEST_CODE = 2;
     private static final int DISCOVERABLE_DURATION = 300;
     public static BluetoothSocket mBluetoothSocket;
     public static BluetoothDevice mBluetoothDevice;
+    DBHandler db;
 
     public void startNew(BluetoothDevice device, BluetoothSocket socket){
         mBluetoothDevice = device;
@@ -68,27 +62,12 @@ public class blutooth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blutooth);
 
+        int j=0;
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         listview = (ListView) findViewById(R.id.listView);
-        listView1= (ListView) findViewById(R.id.listView1);
-        name= (TextView) findViewById(R.id.name);
         db=new DBHandler(getApplicationContext());
-        String[] name1=db.getLoginDetails();
-        String[] id=db.getLoginid();
-        name.setText(name1[0]);
-
-        info= (ImageView) findViewById(R.id.info);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(blutooth.this,about_developer.class);
-                startActivity(intent);
-            }
-        });
-
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // ListView Clicked item value
@@ -106,11 +85,6 @@ public class blutooth extends AppCompatActivity {
 
         adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1);
         listview.setAdapter(adapter);
-
-        adapter1 = new ArrayAdapter(this,android.R.layout.simple_list_item_1);
-        listView1.setAdapter(adapter1);
-        adapter1.
-
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }

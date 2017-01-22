@@ -1877,7 +1877,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0c0006;
         public static final int progress_horizontal=0x7f0c0007;
         public static final int radio=0x7f0c003c;
-        public static final int recyclerview=0x7f0c005a;
+        public static final int recyclerview=0x7f0c005b;
         public static final int rl=0x7f0c005c;
         public static final int save=0x7f0c005f;
         public static final int screen=0x7f0c0016;
@@ -1895,7 +1895,7 @@ containing a value of this type.
         public static final int search_src_text=0x7f0c004b;
         public static final int search_voice_btn=0x7f0c004f;
         public static final int select_dialog_listview=0x7f0c0050;
-        public static final int send=0x7f0c005b;
+        public static final int send=0x7f0c005a;
         public static final int shortcut=0x7f0c003b;
         public static final int showCustom=0x7f0c0010;
         public static final int showHome=0x7f0c0011;

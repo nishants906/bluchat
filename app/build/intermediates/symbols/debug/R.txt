@@ -560,7 +560,7 @@ int id parentPanel 0x7f0c002e
 int id progress_circular 0x7f0c0006
 int id progress_horizontal 0x7f0c0007
 int id radio 0x7f0c003c
-int id recyclerview 0x7f0c005a
+int id recyclerview 0x7f0c005b
 int id rl 0x7f0c005c
 int id save 0x7f0c005f
 int id screen 0x7f0c0016
@@ -578,7 +578,7 @@ int id search_plate 0x7f0c004a
 int id search_src_text 0x7f0c004b
 int id search_voice_btn 0x7f0c004f
 int id select_dialog_listview 0x7f0c0050
-int id send 0x7f0c005b
+int id send 0x7f0c005a
 int id shortcut 0x7f0c003b
 int id showCustom 0x7f0c0010
 int id showHome 0x7f0c0011

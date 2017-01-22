@@ -21,12 +21,11 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     private static final String TABLE_LOGIN = "logIn";
 
-    private static final String TABLE_ID = "loginid";
-
     private static String KEY_MESSAGE = "message";
     private static String KEY_TIME = "time";
     private static String KEY_STATUS = "status";
     private static String KEY_ID = "id";
+    private static String KEY_DEVICENAME = "devicename";
 
 
     private static final String KEY_USERNAME = "username";
@@ -42,7 +41,8 @@ public  class DBHandler extends SQLiteOpenHelper{
                 + KEY_MESSAGE + " TEXT,"
                 + KEY_TIME + " TEXT UNIQUE,"
                 + KEY_STATUS + " TEXT,"
-                + KEY_ID + " TEXT " + ")";
+                + KEY_ID + " TEXT,"
+                + KEY_DEVICENAME + " TEXT " + ")";
 
         db.execSQL(CREATE_CHAT_TABLE);
 
@@ -53,11 +53,6 @@ public  class DBHandler extends SQLiteOpenHelper{
 
         db.execSQL(CREATE_LOGIN_TABLE);
         Log.d("createtable",CREATE_LOGIN_TABLE);
-
-        String CREATE_LOGIN_ID = "CREATE TABLE " + TABLE_ID + "("
-                + KEY_ID + " TEXT " + ")";
-
-        db.execSQL(CREATE_LOGIN_ID);
 
     }
 
@@ -70,13 +65,14 @@ public  class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void addmessage(String message, String time, String status, String id) {
+    public void addmessage(String message, String time, String status, String id, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_MESSAGE, message);
         values.put(KEY_TIME, time);
         values.put(KEY_STATUS, status);
         values.put(KEY_ID, id);
+        values.put(KEY_DEVICENAME, name);
 
         db.insert(TABLE_CHAT, null, values);
         Log.d("query",TABLE_CHAT);
@@ -86,7 +82,6 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     public void adddetails(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(KEY_USERNAME, username);
         Log.d("values", String.valueOf(values));
@@ -95,62 +90,32 @@ public  class DBHandler extends SQLiteOpenHelper{
 
     }
 
-    public void addloginid(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_ID, id);
-        Log.d("values", String.valueOf(values));
-        db.insert(TABLE_ID, null, values);
-        Log.d("query",TABLE_ID);
+    public List<String> getdevice(){
+            List<String> data =new ArrayList<>()  ;
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT DISTINCT " + KEY_DEVICENAME + " FROM "+ TABLE_CHAT;
+            Cursor cursor = db.rawQuery(query, null);
+            cursor.moveToFirst();
+            int count = cursor.getCount();
 
-    }
+            Log.d("counting", String.valueOf(count));
 
-    public String[] getLoginDetails() {
-        String data [] ;
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM "+ TABLE_LOGIN;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        int count = cursor.getCount();
-        data = new String[count];
-        Log.d("counting", String.valueOf(count));
+            while(count > 0) {
+                data.set(0, cursor.getString(0));
+                Log.d("datastring",cursor.getString(0));
+                cursor.moveToNext();
+                count--;
+            }
+            cursor.close();
+            db.close();
+            Log.d("datastring", String.valueOf(data));
 
-        while(count > 0) {
-            data[0] = cursor.getString(0);
-            Log.d("datastring",cursor.getString(0));
-            cursor.moveToNext();
-            count--;
+            return data;
         }
-        cursor.close();
-        db.close();
-        Log.d("datastring", String.valueOf(data));
 
-        return data;
-    }
 
-    public String[] getLoginid() {
-        String data [] ;
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM "+ TABLE_ID;
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        int count = cursor.getCount();
-        data = new String[count];
-        Log.d("counting", String.valueOf(count));
 
-        while(count > 0) {
-            data[0] = cursor.getString(0);
-            Log.d("datastring",cursor.getString(0));
-            cursor.moveToNext();
-            count--;
-        }
-        cursor.close();
-        db.close();
-        Log.d("datastring", String.valueOf(data));
-
-        return data;
-    }
 
     public List<List<String>> access_data() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -167,6 +132,7 @@ public  class DBHandler extends SQLiteOpenHelper{
                 row.add(cursor.getString(1));
                 row.add(cursor.getString(2));
                 row.add(cursor.getString(3));
+                row.add(cursor.getString(4));
                 Log.d("rowadd1", String.valueOf(row));
                 list1.add(row);
                 Log.d("rowadd2", String.valueOf(row));

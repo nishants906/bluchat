@@ -60,6 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
         Log.d("holderid", String.valueOf(holder.holderid));
+        if(db.access_data().get(position).get(3).equals(bluetoothDevice.getAddress())) {
             if (String.valueOf(holder.holderid).equals("1")) {
 
                 holder.text1.setText(db.access_data().get(position).get(0));
@@ -75,6 +76,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             }
         }
 
+    }
+
+
 
     @Override
     public int getItemCount() {
@@ -86,6 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public int getItemViewType(int position) {
         Log.d("status12", db.access_data().get(position).get(2));
+
         if (String.valueOf(db.access_data().get(position).get(2)).equals("recieve")) {
             return 1;
         } else if (db.access_data().get(position).get(2).equals("send")) {

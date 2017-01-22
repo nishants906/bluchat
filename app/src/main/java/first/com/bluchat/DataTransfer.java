@@ -68,7 +68,7 @@ public class DataTransfer extends AppCompatActivity {
                                            byte[] bytes = msg.getBytes();
                                            ct.write(bytes);
                                            Log.d("message1", msg);
-                                           db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send",bluetoothDevice.getAddress());
+                                           db.addmessage(msg,String.valueOf(System.currentTimeMillis()),"send",bluetoothDevice.getAddress(),bluetoothDevice.getName());
 
                                            Log.d("context12", String.valueOf(adapter.getItemCount()));
                                            list.getLayoutManager().smoothScrollToPosition(list, null, adapter.getItemCount());
@@ -123,7 +123,7 @@ public class DataTransfer extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if(readMessage!=null) {
-                                        db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve",bluetoothDevice.getAddress());
+                                        db.addmessage(readMessage,String.valueOf(System.currentTimeMillis()), "recieve",bluetoothDevice.getAddress(),bluetoothDevice.getName());
                                         Log.d("message12", readMessage);
 
                                         Log.d("context12", String.valueOf(adapter.getItemCount()));
